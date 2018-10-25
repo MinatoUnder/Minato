@@ -20,7 +20,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "!";
+const prefix = "?";
 /////////////////////////
 ////////////////////////
 
@@ -35,7 +35,7 @@ client.on('message', async msg =>{
 
     if(command === `ping`) {
     let embed = new Discord.RichEmbed()
-    .setColor(3447003)
+    .setColor(RANDOM)
     .setTitle("Pong!!")
     .setDescription(`${client.ping} ms,`)
     .setFooter(`Requested by | ${msg.author.tag}`);
@@ -102,13 +102,13 @@ client.on('message', async msg => {
 	if (command === `play`) {
 		const voiceChannel = msg.member.voiceChannel;
         
-        if (!voiceChannel) return msg.channel.send("I can't find you in any voice channel!");
+        if (!voiceChannel) return msg.channel.send(" **I can't find you in any voice channel! ✖** ");
         
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         
         if (!permissions.has('CONNECT')) {
 
-			return msg.channel.send("I don't have enough permissions to join your voice channel!");
+			return msg.channel.send(" **I don't have enough permissions to join your voice channel!** ");
         }
         
 		if (!permissions.has('SPEAK')) {
@@ -171,7 +171,7 @@ client.on('message', async msg => {
 				} catch (err) {
 
 					console.error(err);
-					return msg.channel.send("I didn't find any results!");
+					return msg.channel.send(" **I didn't find any results!** ");
 				}
 			}
 
@@ -181,10 +181,10 @@ client.on('message', async msg => {
         
 	} else if (command === `skip`) {
 
-		if (!msg.member.voiceChannel) return msg.channel.send("You Must be in a Voice channel to Run the Music commands!");
-        if (!serverQueue) return msg.channel.send("There is no Queue to skip!!");
+		if (!msg.member.voiceChannel) return msg.channel.send(" **You Must be in a Voice channel to Run the Music commands!** ");
+        if (!serverQueue) return msg.channel.send(" **There is no Queue to skip!!** ");
 
-		serverQueue.connection.dispatcher.end('Ok, skipped!');
+		serverQueue.connection.dispatcher.end(' **Ok, skipped!** ');
         return undefined;
         
 	} else if (command === `stop`) {
@@ -193,7 +193,7 @@ client.on('message', async msg => {
         if (!serverQueue) return msg.channel.send("There is no Queue to stop!!");
         
 		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end('Ok, stopped & disconnected from your Voice channel');
+		serverQueue.connection.dispatcher.end(' **Ok, stopped & disconnected from your Voice channel** ');
         return undefined;
         
 	} else if (command === `vol`) {
@@ -313,30 +313,30 @@ function play(guild, song) {
 
 
 client.on('message', message => {
-    if (message.content === 'help') {
+    if (message.content === '?help') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
-        .setDescription('**برفكس البوت (!)**')
-        .addField('play', 'لتشغيل اغنية')
-        .addField('join', 'دخول رومك الصوتي')
-        .addField('disconnect', 'الخروج من رومك الصوتي')
-        .addField('skip', 'تخطي الأغنية')
-        .addField('pause', 'ايقاف الاغنية مؤقتا')
-        .addField('resume', 'تكملة الاغنية')
-        .addField('queue', 'اظهار قائمة التشغيل')
-        .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
+        .setDescription('** 🔥برفكس البوت (!)**')
+        .addField('play', '✨لتشغيل اغنية')
+        .addField('join', ' ✨دخول رومك الصوتي')
+        .addField('disconnect', '✨الخروج من رومك الصوتي')
+        .addField('skip', '✨تخطي الأغنية')
+        .addField('pause', '✨ايقاف الاغنية مؤقتا')
+        .addField('resume', '✨تكملة الاغنية')
+        .addField('queue', '✨اظهار قائمة التشغيل')
+        .addField('np', '✨اظهار الاغنية اللي انت مشغلها حاليا')
         .setFooter('(general_commands) لاظهار الاوامر العامة')
       message.channel.send(helpEmbed);
     }
 });
 
 client.on('message', message => {
-    if (message.content === 'general_commands') {
+    if (message.content === '?help-all') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر عامة...**')
-        .addField('avatar', "افاتار الشخص المطلوب")
-        .addField('gif', 'البحث عن جيف انت تطلبه')
-        .addField('ping', 'معرفة ping البوت')
+        .addField('avatar', "💫افاتار الشخص المطلوب")
+        .addField('gif', '💫البحث عن جيف انت تطلبه')
+        .addField('ping', '💫معرفة ping البوت')
         .setFooter('المزيد قريبا ان شاء الله!')
       message.channel.send(helpEmbed);
     }
