@@ -1,23 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
- 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'under') {
-    msg.reply('**✨ World !** ');
-  }
-});
-
-client.on('ready', () => {
-     client.user.setActivity("#UnderWolrd | ?Help ✨",{type: 'Streaming'});
-
-});
-
-const Discord = require('discord.js');
-const client = new Discord.Client();
 const PREFIX = "?"
 const Util = require('discord.js');
  
@@ -70,6 +52,17 @@ client.on('ready', () => {
 client.on('disconnect', () => console.log('I just disconnected, making sure you know, I will reconnect now...'));
  
 client.on('reconnecting', () => console.log('I am reconnecting now!'));
+
+client.on('message', msg => {
+  if (msg.content === 'under') {
+    msg.reply('**✨ World !** ');
+  }
+});
+
+client.on('ready', () => {
+     client.user.setActivity("#UnderWolrd | ?Help ✨",{type: 'Streaming'});
+
+});
  
 client.on('message', async msg => { // eslint disable line
     if (msg.author.bot) return undefined;
